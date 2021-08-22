@@ -13,8 +13,6 @@ function renderLicenseBadge(license) {
   }
 }
 
-["MIT", "GPL 2.0", "Apache", "BSD 3", "Other"],
-
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
