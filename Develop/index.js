@@ -13,62 +13,60 @@ const questions = [
     {
         type: "input",
         name: "description",
-        message: "Write a brief desription of your project",
+        message: "Please write a brief desription of your project",
     },
     {
         type: "input",
         name: "installation",
-        message: "Provide any steps required to install the application",
+        message: "Please provide any steps required to install the project",
     },
     {
         type: "input",
         name: "usage",
-        message:
-            "List any examples and instructions for use of the application",
+        message: "What is the usage of the application",
     },
     {
         type: "input",
         name: "license",
         message: "Please select a license type",
-        choices: ["MIT", "Apache 2.0", "GPL 3.0", "BSD 3"],
+        choices: ["MIT", "GPL 2.0", "Apache", "BSD 3", "Other"],
     },
     {
         type: "input",
         name: "contributing",
-        message: "List any contributors you'd like to add",
+        message: "Please list any contributors if applicable",
     },
     {
         type: "input",
         name: "tests",
-        message: "Would you like to to run any tests for your project?",
+        message: "Would you like to to run a tests for your project?",
     },
     {
         type: 'input',
         name: 'github',
-        message: 'what is your github username?',
+        message: 'Please input your github username',
     },
     {
         type: "input",
         name: "questions",
-        message: "Provide your e-mail address",
+        message: "Please provide your e-mail address",
     },
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    return fs.writeFile(fileName, data, function (err) {
-        if (err) {
-            console.log(err);
+    return fs.writeFile(fileName, data, function (error) {
+        if (error) {
+            console.log(error);
         }
-        console.log(data);
+        console.log("File has been created");
     });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then((data) => {
-        console.log(data);
-        writeToFile("README.md", generateMarkdown({ ...data }));
+    inquirer.prompt(questions).then((answer) => {
+        writeToFile("README.md", generateMarkdown({ ...answer }));
     });
 }
 
