@@ -3,28 +3,25 @@
 function renderLicenseBadge(license) {
   switch (license) {
     case "MIT":
-      console.log("https://img.shields.io/badge/license-MIT-blue");
-      break;
-    case "Apache 2.0":
-      console.log("https://img.shields.io/badge/license-Apache%202.0-blue");
-      break;
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
     case "GPL 3.0":
-      console.log("https://img.shields.io/badge/license-GPL%203.0-blue");
-      break;
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)]";
+    case "Apache 2.0":
+      return "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
     case "BSD 3":
-      console.log("https://img.shields.io/badge/license-BSD%203-blue");
-      break;
+      return "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]";
   }
 }
 
-"MIT", "Apache 2.0", "GPL 3.0", "BSD 3";
-}
+["MIT", "GPL 2.0", "Apache", "BSD 3", "Other"],
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
 
-  ## Description
+  ${renderLicenseBadge(data.license)}
+
+  ## Project Description
   ${data.description}
 
   ## Table of Contents
@@ -32,8 +29,7 @@ function generateMarkdown(data) {
   * [Usage](#usage)
   * [License](#license)
   * [Contributing](#contributing)
-  * [Tests](#tests)
-  * [Github] (#github)
+  * [Test](#tests)
   * [Questions](#questions)
   
   ## Installation
@@ -43,19 +39,19 @@ function generateMarkdown(data) {
   ${data.usage}
 
   ## License
-  This application is licensed under the ${data.license} license.
+  This application is licensed under the ${renderLicenseBadge(data.license)} license.
 
   ## Contributing
   ${data.contributing}
 
-  ## Tests
+  ## Test
   ${data.tests}
   
-  ##Github
-  ${data.github}
 
   ## Questions
-  Please feel free to contact me at ${data.questions} for any questions.
+  Please contact me at ${data.questions} for any questions.
+
+  https://github.com/${data.github}
 `;
 }
 
